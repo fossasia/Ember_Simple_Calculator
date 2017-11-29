@@ -1,8 +1,8 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font: 400 21px Quicksand, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: 400 21px Quicksand, sans-serif;
 }
 
 body {
@@ -10,8 +10,8 @@ body {
 }
 
 #calculator {
-	width: 280px;
-	height: auto;
+  width: 280px;
+  height: auto;
   margin: 3em;
   box-shadow: 0 0 0 1px #9b9b9b;
   border-radius: 2px;
@@ -23,53 +23,55 @@ body {
 }
 
 .top span.clear {
-	float: left;
+  float: left;
 }
 
 .top .screen {
   height: 130px;
   width: 100%;
-	float: right;
-	padding: 0 10px;
-	background: #e3e7ea;
+  float: right;
+  padding: 0 10px;
+  background: #e3e7ea;
   font-size: 52px;
   line-height: 155px;
-	color: #656464;
+  color: #656464;
   font-weight: 100;
-	text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.8);
-	text-align: right;
-	letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.8);
+  text-align: right;
+  letter-spacing: 1px;
 }
 
-.keys, .top {
-	overflow: hidden;
+.keys,
+.top {
+  overflow: hidden;
 }
 
-.keys span, .top span.clear {
-	float: left;
-	position: relative;
-	top: 0;
-	cursor: pointer;
-	width: 70px;
-	height: 60px;
-	background: #fafbfd;
+.keys span,
+.top span.clear {
+  float: left;
+  position: relative;
+  top: 0;
+  cursor: pointer;
+  width: 70px;
+  height: 60px;
+  background: #fafbfd;
   box-shadow: 0 0 0 1px #e3e7ea;
-	color: #999a9d;
-	line-height: 60px;
-	text-align: center;
-	-webkit-user-select: none;
-	user-select: none;
-	transition: all 0.2s ease;
+  color: #999a9d;
+  line-height: 60px;
+  text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: all 0.2s ease;
 }
 
 span.operator {
-	margin-right: 0;
+  margin-right: 0;
 }
 
 .keys span.operator {
-	background: #f79331;
+  background: #f79331;
   color: white;
-	margin-right: 0;
+  margin-right: 0;
 }
 
 .keys span.operatora {
@@ -78,20 +80,19 @@ span.operator {
 }
 
 .keys span.eval {
-	background: #f1ff92;
-	box-shadow: 0px 4px #9da853;
-	color: #888e5f;
+  background: #f1ff92;
+  box-shadow: 0px 4px #9da853;
+  color: #888e5f;
 }
 
 .top span.clear {
-	background: #ff9fa8;
-	box-shadow: 0px 4px #ff7c87;
-	color: white;
+  background: #ff9fa8;
+  box-shadow: 0px 4px #ff7c87;
+  color: white;
 }
 
-
 .keys span:active {
-	background: #c3c3c3;
+  background: #c3c3c3;
 }
 
 .keys span.operator:active {
@@ -99,7 +100,7 @@ span.operator {
 }
 
 .keys span.zero {
-  width:140px;
+  width: 140px;
 }
 
 .operator.equal {
@@ -109,7 +110,7 @@ span.operator {
 }
 
 .center {
-	text-align: center;
-	color: #ffffff;
-	margin-top: 50px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 50px;
 }
