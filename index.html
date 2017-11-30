@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator App</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<script type="text/x-handlebars">
+    	{{outlet}}
+	</script>
+
+	<script type="text/x-handlebars" data-template-name="index">
+		<div class="theme-calculator">
+			<div class="display-container">
+				{{view App.DisplayView}}
+			</div>
+			<div class="button-container">
+				{{view App.ButtonView}}
+			</div>
+		</div>
+  	</script>
+
+	<script type="text/x-handlebars" data-template-name="display">
+		<div class="container">
+			<input type="text" class="theme-display" disabled="disabled" readonly="readonly">
+    	</div>
+	</script>
+
+	<script type="text/x-handlebars" data-template-name="button">
+		<div class="container">
+			<div>
+				<div class="theme-button" data-actualValue="clear" data-type="clear">clear</div>
+			</div>
+			<div>
+				{{#with controller.content.data}}
+					{{#each button in buttons}}
+						<div {{bind-attr data-actualValue='button.actualValue' data-type='button.type'}} class="theme-button">
+							{{button.displayValue}}
+						</div>
+					{{/each}}
+				{{/with}}
+			</div>
+    	</div>
+	</script>
+
+	<script src="js/libs/jquery.js"></script>
+	<script src="js/libs/handlebars.js"></script>
+	<script src="js/libs/ember.js"></script>
+	<script src="js/app.js"></script>
+	
+</body>
+</html>
