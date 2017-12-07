@@ -44,8 +44,7 @@ Deploying
 Specify what it takes to deploy your app.
 Further Reading / Useful Links
 
-    ember.js
-    ember-cli
+    https://emberjs.com/
     Development Browser Extensions
-        ember inspector for chrome
-        ember inspector for firefox
+        https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi?hl=en
+        https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/
