@@ -1,0 +1,40 @@
+<div id="background">
+  <div id="result"></div>
+  <div id="main">
+      
+    <div class="first-row">
+      <button class="btn-style del-bg num" {{action "input" "del" on="mouseUp"}}>Del</button>
+      <button class="btn-style c-bg num" {{action "input" "C" on="mouseUp"}}>C</button>
+      <button class="btn-style operator opera-bg fall-back" {{action "input" "%" on="mouseUp"}}>%</button>
+      <button class="btn-style opera-bg value align operator" {{action "input" "+" on="mouseUp"}}>+</button>
+    </div>
+
+    <div class="rows">
+      <button class="btn-style num-bg num first-child" {{action "input" "7" on="mouseUp"}}>7</button>
+      <button class="btn-style num-bg num" {{action "input" "8" on="mouseUp"}}>8</button>
+      <button class="btn-style num-bg num" {{action "input" "9" on="mouseUp"}}>9</button>
+      <button class="btn-style opera-bg operator" {{action "input" "-" on="mouseUp"}}>-</button>
+    </div>
+
+    <div class="rows">
+      <button class="btn-style num-bg num first-child" {{action "input" "4" on="mouseUp"}}>4</button>
+      <button class="btn-style num-bg num" {{action "input" "5" on="mouseUp"}}>5</button>
+      <button class="btn-style num-bg num" {{action "input" "6" on="mouseUp"}}>6</button>
+      <button class="btn-style opera-bg operator" {{action "input" "*" on="mouseUp"}}>x</button>
+    </div>
+
+    <div class="rows">
+      <button class="btn-style num-bg num first-child" {{action "input" "1" on="mouseUp"}}>1</button>
+      <button class="btn-style num-bg num" {{action "input" "2" on="mouseUp"}}>2</button>
+      <button class="btn-style num-bg num" {{action "input" "3" on="mouseUp"}}>3</button>
+      <button class="btn-style opera-bg operator" {{action "input" "/" on="mouseUp"}}>/</button>
+    </div>
+
+    <div class="rows">
+      <button class="num-bg zero delete" {{action "input" "0" on="mouseUp"}}>0</button>
+      <button class="btn-style num-bg period fall-back" {{action "input" "." on="mouseUp"}}>.</button>
+      <button class="eqn eqn-bg align" {{action "input" "exec" on="mouseUp"}}>=</button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,159 @@
+body {
+  background: #777;
+  margin: 0px;
+}
+
+#background {
+  height: 400px;
+  width: 280px;
+  border-radius: 5px;
+  background: rgb(66, 198, 216);
+  margin: 50px auto;
+  transition: all 2s ease;
+}
+
+button {
+  border: 0;
+  color: #fff;
+}
+
+#result {
+  display: block;
+  font-family: sans-serif;
+  width: 83%;
+  height: 40px;
+  margin: 15px;
+  text-align: right;
+  border: 0;
+  border-radius: 5px;
+  background: #3b3535;
+  color: #fff;
+  padding-top: 20px;
+  font-size: 20px;
+  outline: none;
+  overflow: hidden;
+  letter-spacing: 4px;
+  position: relative;
+  top: 20px;
+  left: 8px;
+}
+
+#result:hover {
+  cursor: text;
+}
+
+.first-row {
+  width: 300px;
+  margin-bottom: 20px;
+  position: relative;
+  top: 10px;
+  left: 20px;
+}
+
+.rows {
+  width: 300px;
+  margin-top: 10px;
+}
+
+.delete {
+  width: 110px;
+  height: 50px;
+  margin-left: 25px;
+  border-radius: 4px;
+}
+
+.fall-back {
+  margin-left: 3px !important;
+}
+
+.align {
+  margin-left: 6px !important;
+}
+
+.btn-style {
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
+  border-radius: 4px;
+}
+
+.eqn {
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
+  border-radius: 4px;
+}
+
+.first-child {
+  margin-left: 25px;
+}
+
+.num-bg {
+  background: rgb(43, 42, 42);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.num-bg:active {
+  background: rgb(32, 32, 32);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.del-bg {
+  background: rgb(219, 231, 54);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.del-bg:active {
+  background: rgb(178, 180, 37);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.opera-bg {
+  background: #333;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.opera-bg:active {
+  background: #333;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.c-bg {
+  background: rgb(204, 28, 28);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.c-bg:active {
+  background: rgb(133, 33, 33);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.eqn-bg {
+  background: #17a928;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.eqn-bg:active {
+  background: #17a928;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
