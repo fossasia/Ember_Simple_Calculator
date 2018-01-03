@@ -1,9 +1,8 @@
+
 # Documentation
 
 
 #Project 
-
-Simple Calculator App using Ember.js
 
 # How to use it
 
@@ -36,5 +35,4 @@ As a GCI Contest, I have a variety of Tasks to choose. But I choosed because I l
 
 
 Thank You
-
 

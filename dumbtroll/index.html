@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>c a l c l a n d</title>
+	<script src="js/libs/jquery-1.10.2.js"></script>
+	<script src="js/libs/handlebars-1.1.2.js"></script>
+	<script src="js/libs/ember-1.5.1.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/buttonmodel.js"></script>
+	<script src="js/button.js"></script>
+	<script src="js/display.js"></script>
+	<link rel="stylesheet" href="http://www.justinaguilar.com/animations/css/animations.css">
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+* {
+	font-family: 'Maven Pro', sans-serif;
+}
+html {
+	background: #2C3E50;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #4CA1AF, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #4CA1AF, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	
+}
+.theme-calculator {
+	height: 201px;
+	width: 206px;
+	padding: 20px;
+	background-color: #f7f7f7;
+	border: none;
+	border-radius: 20px;
+	box-shadow: 0 10px 6px -6px #777;
+	background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	text-align: center;
+	display: block;
+	position: absolute;
+	top: 100px;
+	left: 500px;
+	right: 500px;
+}
+.theme-display {
+	height: 25px;
+	width: 202px;
+	margin-left: 0px;
+	text-align: right;
+	color: black;
+	border: none;
+	margin-bottom: 0px;
+}
+.container {
+	width: auto;
+	padding: 2px;
+}
+.button-container .container div:nth-child(1) {
+	width: 100%;
+	margin-top: 1%;
+	float: left;
+}
+.button-container .container div:nth-child(2) div {
+	width: 23.5%;
+	display: block;
+	float: left;
+	min-height: 30px;
+	margin-left: 2%;
+	margin-top: 2%;
+}
+.button-container .container div:nth-child(2) div:nth-child(4n+4) {
+	margin-left: 0;
+}
+.theme-button {
+	height: 30px;
+	font-size: 15px;
+	color: white;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+}
+.theme-button:active {
+	position: relative;
+	top: 1px;
+}
+	</style>
+</head>
+<body>
+	<script type="text/x-handlebars">
+    	{{outlet}}
+	</script>
+
+	<script type="text/x-handlebars" data-template-name="index">
+		<div class="theme-calculator slideUp">
+			<div class="display-container">
+				{{view App.DisplayView}}
+			</div>
+			<div class="button-container">
+				{{view App.ButtonView}}
+			</div>
+		</div>
+  	</script>
+
+	<script type="text/x-handlebars" data-template-name="display">
+		<div class="container">
+			<input type="text" class="theme-display" disabled="disabled" readonly="readonly">
+    	</div>
+	</script>
+
+	<script type="text/x-handlebars" data-template-name="button">
+		<div class="container">
+			<div>
+				<div class="theme-button" data-actualValue="clear" data-type="clear" style="float: right;">Reset</div>
+			</div>
+			<div>
+				{{#with controller.content.data}}
+					{{#each button in buttons}}
+						<div {{bind-attr data-actualValue='button.actualValue' data-type='button.type'}} class="theme-button">
+							{{button.displayValue}}
+						</div>
+					{{/each}}
+				{{/with}}
+			</div>
+    	</div>
+	</script>
+
+</body>
+<script type="text/javascript">
+	App = Ember.Application.create();
+App.IndexController = Ember.Controller.extend({
+	needs : ["button", "display"],
+	firstOperand : undefined,
+	operator : undefined,
+	secondOperand : undefined,
+	total : undefined,
+	clearData : function(){
+		this.resetValues();
+		this.get('controllers.display').send('clearDisplayData');
+	},
+	buttonClicked : function(data) {
+		this.get('controllers.display').send('setDataToDisplay',data.value);
+	},
+	specialButtonClicked : function(data){
+		var display = this.get('controllers.display');
+		var textValue = display.get('currentDisplayValue');
+		display.send('clearDisplayData');
+		
+		var operator = data.value;
+		
+		if(textValue === "" || textValue === null || typeof(textValue) === "undefined"){
+			//Do nothing
+		}else if(typeof(this.get('firstOperand')) === "undefined"){
+			this.set('firstOperand', parseFloat(textValue));
+			this.set('operator', operator);
+		}else if(typeof(this.get('firstOperand')) !== "undefined" && typeof(this.get('operator')) !== "undefined"){
+			this.set('secondOperand', parseFloat(textValue));
+			
+			var total = this.calculate(this.get('firstOperand'), this.get('operator'), this.get('secondOperand'));
+			this.set('total', total);
+			display.send('setDataToDisplay',this.get('total'));
+			this.resetValues();
+			
+			if(operator === "+" || operator === "-" || operator === "/" || operator === "X"){
+				this.set('firstOperand', total);
+				this.set('operator', operator);
+				display.send('clearDisplayData');
+			}
+		}
+	},
+	calculate : function(firstOperand, operator, secondOperand){
+		if(operator === "+"){
+			return firstOperand + secondOperand;
+		}else if(operator === "-"){
+			return firstOperand - secondOperand;
+		}else if(operator === "/"){
+			return firstOperand / secondOperand;
+		}else if(operator === "X"){
+			return firstOperand * secondOperand;
+		}
+	},
+	resetValues : function(){
+		this.set('firstOperand', undefined);
+		this.set('operator', undefined);
+		this.set('secondOperand', undefined);
+		this.set('total', undefined);
+	}
+});
+App.buttonModel = Ember.Object.create({
+	data : {
+		buttons : [ {
+			type : "number",
+			actualValue : 7,
+			displayValue : "7"
+		}, {
+			type : "number",
+			actualValue : 8,
+			displayValue : "8"
+		}, {
+			type : "number",
+			actualValue : 9,
+			displayValue : "9"
+		}, {
+			type : "special",
+			actualValue : "/",
+			displayValue : '\u00F7'
+		}, {
+			type : "number",
+			actualValue : 4,
+			displayValue : "4"
+		}, {
+			type : "number",
+			actualValue : 5,
+			displayValue : "5"
+		}, {
+			type : "number",
+			actualValue : 6,
+			displayValue : "6"
+		}, {
+			type : "special",
+			actualValue : "X",
+			displayValue : "\u00D7"
+		}, {
+			type : "number",
+			actualValue : 1,
+			displayValue : "1"
+		}, {
+			type : "number",
+			actualValue : 2,
+			displayValue : "2"
+		}, {
+			type : "number",
+			actualValue : 3,
+			displayValue : "3"
+		}, {
+			type : "special",
+			actualValue : "-",
+			displayValue : "-"
+		}, {
+			type : "special",
+			actualValue : ".",
+			displayValue : "."
+		}, {
+			type : "number",
+			actualValue : 0,
+			displayValue : "0"
+		}, {
+			type : "special",
+			actualValue : "=",
+			displayValue : "="
+		}, {
+			type : "special",
+			actualValue : "+",
+			displayValue : "+"
+		} ]
+	}
+});
+App.displayModel = Ember.Object.create({
+    data : {
+    	type : "c a l c"
+    }
+});
+App.DisplayController = Ember.Controller.extend(Ember.Evented, {
+	init: function() {
+	    this._super();
+	    this.set("model", App.displayModel);
+	},
+	currentDisplayValue : "",
+	setDataToDisplay : function(value){
+		this.trigger("setDisplayData",value);
+	},
+	clearDisplayData : function(){
+		this.trigger("clearDisplayData");
+	}
+});
+App.DisplayView = Ember.View.extend({
+	templateName : 'display',
+	didInsertElement: function () {
+		var controller = App.__container__.lookup("controller:display");
+		controller.on('setDisplayData', $.proxy(this.setDisplayData, this));
+		controller.on('clearDisplayData', $.proxy(this.clearDisplayData, this));
+	},
+	clearDisplayData : function(){
+		this.$().find('input').val("");
+	},
+	setDisplayData : function(value){
+		var element = this.$().find('input');
+		var currentValue = element.val();
+		var newValue = currentValue + "" + value;
+		element.val(newValue);
+		var controller = App.__container__.lookup("controller:display");
+		controller.set("currentDisplayValue", newValue);
+	}
+});
+App.ButtonController = Ember.Controller.extend({
+	init: function() {
+	    this._super();
+	    this.set("model", App.buttonModel);
+	},
+	actions : {
+		click : function(data) {
+			var controller = App.__container__.lookup("controller:index");
+			var buttonType = data.type;
+			if (buttonType === "clear") {
+			controller.send('clearData',data);
+			} else {
+			if (buttonType === "number" || (buttonType === "special" && data.value === ".")) {
+			controller.send('buttonClicked',data);
+			} else if (buttonType === "special") {
+			controller.send('specialButtonClicked',data);
+				}
+			}
+		}
+	}
+});
+App.ButtonView = Ember.View.extend({
+	init: function() {
+	    this._super();
+	    this.set("controller", App.ButtonController.create());
+	},
+	templateName : 'button',
+	attributeBindings: ['data-actualValue', 'data-type'],
+	click : function(e) {
+		var ele = $(e.target);
+		this.get('controller').send('click', {
+			value : ele.data("actualvalue"),
+			type : ele.data("type")
+		});
+	}
+});
+</script>
+
+</script>
+</html>
