@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>EmberCalculator</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{content-for "head"}}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>EmberCalculator</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/ember-calculator.css">
+  {{content-for "head"}}
 
-    {{content-for "head-footer"}}
-  </head>
-  <body>
-    {{content-for "body"}}
+  <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+  <link integrity="" rel="stylesheet" href="{{rootURL}}assets/ember-calculator.css">
 
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/ember-calculator.js"></script>
+  {{content-for "head-footer"}}
+</head>
 
-    {{content-for "body-footer"}}
-  </body>
+<body>
+  {{content-for "body"}}
+
+  <script src="{{rootURL}}assets/vendor.js"></script>
+  <script src="{{rootURL}}assets/ember-calculator.js"></script>
+
+  {{content-for "body-footer"}}
+</body>
+<script>
+  document.addEventListener("keydown", keyDownTextField, false);
+
+  function keyDownTextField(e) {
+    var keyCode = e.keyCode;
+    console.log(keyCode)
+    if (keyCode >= 48 && keyCode <= 57)
+      document.getElementById(`${keyCode - 48}`).click();
+    else if (keyCode >= 96 && keyCode <= 105)
+      document.getElementById(`${keyCode - 96}`).click();
+    else if (keyCode === 8)
+      document.getElementById("bspace").click();
+    else if(keyCode===107)
+      document.getElementById("plus").click();
+    else if(keyCode===109|| keyCode==189)
+      document.getElementById("minus").click();
+    else if(keyCode===106)
+      document.getElementById('multi').click();
+    else if(keyCode===111)
+      document.getElementById('div').click()
+    else if (keyCode===13)
+      document.getElementById('enter').click()
+
+  }
+</script>
+
 </html>
