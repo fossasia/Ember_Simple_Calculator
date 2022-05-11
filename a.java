@@ -1,6 +1,7 @@
 class A {
     String name ;
     int number ;
+    int age;
      public void set_name(String n){
          name =n;
      }
@@ -13,9 +14,10 @@ class A {
      public int get_number(){
          return number;
      }
-  public A(String s1,int num) {
+  public A(String s1,int num,int age ) {
        name=s1;
        number=num;
+       this->age=age;
    }   
   
   
